@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "fastify": "^5.2.1"
+  },
+  "scripts": {
+    "PackRun": "node --watch Date.js"
   }
 }

@@ -1,13 +1,10 @@
-import { fasfify } from "fastify"
+import { fastify } from 'fastify'
 
 const server = fastify()
-server.listen(3333)
 server.get('/', () => {
     return Date.now()
 })
 
 
-function Alertar()
-{
-    alert(server.get())
-}
+server.listen(3000)
+
