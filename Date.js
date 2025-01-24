@@ -4,19 +4,15 @@ import mysql from 'mysql2'
 const server = fastify()
 //const memory = new Memory()
 
+const pool = mysql.createPool({
+    host: '172.17.0.2',
+    user: 'root',
+    password : '',
+    port : 5555
+}).promise()
 
-var con = mysql.createConnection({
-    server : 'localhost',
-    port : 5555,
-    user : 'root',
-    password : 11
-})
+const result = await pool.query("create database APIMaster")
 
-con.connect(function(err){
-    if(err) throw err;
-    console.log("conectado")
-})
-con.connect()
 
 
 
