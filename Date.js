@@ -1,27 +1,17 @@
 import { fastify } from 'fastify'
-import mysql from 'mysql2'
+import { Memory } from './memory.js'
 
 const server = fastify()
-//const memory = new Memory()
-
-const pool = mysql.createPool({
-    host: '172.17.0.2',
-    user: 'root',
-    password : '',
-    port : 5555
-}).promise()
-
-const result = await pool.query("create database APIMaster")
+const memory = new Memory()
 
 
-
-
-server.get('/', () => {
-    memory.List()
-    return
+server.get('/', (reply) => {
+    return memory.List()
 })
-server.post('/', () => {
-    return 
+server.post('/temp', (request, reply) => {
+    memory.Add(request.params.temp)
+    console.log(request.params.temp)
+    return reply.status(204).send()
 })
 
 
