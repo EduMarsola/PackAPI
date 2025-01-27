@@ -8,7 +8,7 @@ const memory = new Memory()
 server.get('/', (reply) => {
     return memory.List()
 })
-server.post('/temp', (request, reply) => {
+server.post('/:temp', (request, reply) => {
     memory.Add(request.params.temp)
     console.log(request.params.temp)
     return reply.status(204).send()

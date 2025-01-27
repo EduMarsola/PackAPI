@@ -1,8 +1,13 @@
 import mysql from 'mysql2'
+import  dotenv  from 'dotenv'
+dotenv.config()
+
+
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password : 'null'
+    user: process.env.MYSQL_USER,
+host: process.env.MYSQL_HOST,
+    password : process.env.MYSQL_PASSWORD,
+    database : process.env.MYSQL_DATABASE
 }).promise()
 
 export class Memory{
@@ -18,9 +23,15 @@ export class Memory{
     async List()
     {
         await pool.query("use PackAPI;")
-        const result = await pool.query("select * from Tempos;")
+        const [result] = await pool.query("select * from Tempos;")
         console.log(result)
-        return result[0] //this.men.values()
+        return result //this.men.values()
+    }
+    async GetOne(id)
+    {
+        await pool.query("use PackAPI;")
+        const row = await pool.query(`select * from Tempos where id = ?`, [id])
+        return row
     }
 
 }

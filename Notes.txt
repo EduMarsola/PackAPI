@@ -1,0 +1,11 @@
+untrusted data
+{
+    function GetData(id)
+    pool.query(`select * from tabela where id = ${id}`) fica aberto para sql injection 
+}
+
+trusted data
+{
+    function GetData(id)
+    { pool.query("select * from tabela where id = ?", [id])} sql se vira com a sentença incompleta
+}

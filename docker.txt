@@ -1,0 +1,3 @@
+docker run --name PackAPI -p 3306:5555 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -v E:\Programs\PackAPIBanco mysql
+
+mysqlroot password = null (em texto)
